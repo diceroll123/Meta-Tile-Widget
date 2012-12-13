@@ -61,7 +61,7 @@
     <input type="text" class="search-box" name="search" value="" placeholder="Search" autocomplete="off"/>
     <ul id="meta-tile" class="{{grid}}">
       <li ng-repeat="tile in tiles" class="animations">
-        <a href="{{tile.url}}" class="{{tile.sub_guid}}" target="_top" title="{{tile.name}}" style="background: center no-repeat {{tile.color}} url('{{tile.image}}'); background-size: contain;" data-color="{{tile.color}}" data-image="{{tile.dataimage}}" data-search="{{tile.search}}"></a>
+        <a href="{{tile.url}}" class="{{tile.sub_guid}}" target="{{open_in}}" title="{{tile.name}}" style="background: center no-repeat {{tile.color}} url('{{tile.image}}'); background-size: contain;" data-color="{{tile.color}}" data-image="{{tile.dataimage}}" data-search="{{tile.search}}"></a>
       </li>
     </ul>
   </body>

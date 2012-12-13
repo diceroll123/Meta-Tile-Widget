@@ -154,6 +154,21 @@ $(document).ready(function() {
     });
   });
 
+  $('#open_tab').change(function() {
+    var element = $(this);
+    chrome.storage.sync.get(get_guid(), function(data) {
+      if(data[get_guid()].options === undefined) {
+        data[get_guid()].options = {};
+      }
+      if (element.is(':checked')) {
+        data[get_guid()].options.open_tab = true;
+      } else {
+        data[get_guid()].options.open_tab = false;
+      }
+      chrome.storage.sync.set(data);
+    });
+  });
+
   $("#antp").click(function(e) {
     go2antp();
     e.preventDefault();
@@ -249,6 +264,10 @@ $(document).ready(function() {
   chrome.storage.sync.get(get_guid(), function(data) {
     if (data[get_guid()] && data[get_guid()].options && data[get_guid()].options.disable_search == true) {
       $("#disable_search").attr("checked", true);
+    }
+
+    if (data[get_guid()] && data[get_guid()].options && data[get_guid()].options.open_tab == true) {
+      $("#open_tab").attr("checked", true);
     }
   });
 });

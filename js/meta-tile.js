@@ -66,6 +66,14 @@ function MetaTileCtrl($scope) {
       if(data[get_guid()].options && data[get_guid()].options.disable_search != true) {
         $("#tilejs").attr("src", "/js/css/" + $scope.grid + ".js");
       }
+
+      $scope.open_in = "_top"; // by default
+
+      console.log(data[get_guid()].options.open_tab);
+      if(data[get_guid()].options && data[get_guid()].options.open_tab == true) {
+        $scope.open_in = "_blank";
+      }
+
       $scope.$apply();
       deadOrAlive();
     });

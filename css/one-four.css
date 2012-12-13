@@ -1,0 +1,22 @@
+li {
+	position: absolute;
+	list-style-type: none;
+	height: -webkit-calc(100% / 2 - 3px);
+	width: -webkit-calc(100% / 2 - 3px);
+}
+li:nth-child(n+3) {
+	bottom: 0px;
+}​
+li:nth-child(-n+2) {
+	top: 0px;
+}​
+li:nth-child(odd) {
+	left: 0px;
+}
+li:nth-child(even) {
+	right: 0px;
+}
+
+input {
+  top: -webkit-calc(50% - 13px);
+}

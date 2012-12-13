@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html ng-app ng-csp>
+  <head>
+    <title>Options - Meta-Tile Widget</title>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/angular.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/presets.js"></script>
+    <script type="text/javascript" src="/js/options.js"></script>
+    <link rel="stylesheet" media="screen" type="text/css" href="/colorpicker/css/colorpicker.css" />
+    <script type="text/javascript" src="/colorpicker/js/colorpicker.js"></script>
+
+    <style type="text/css">
+      body {
+        -webkit-user-select: none;
+        cursor: default;
+      }
+
+      hr.soften {
+        height: 1px;
+        margin: 25px 0;
+        background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+        border: 0;
+      }
+
+      #colorSelector {
+        position: relative;
+        top: 4px;
+        left: 4px;
+        width: 28px;
+        height: 28px;
+        background: url("/colorpicker/images/select2.png") center;
+        display: inline-block;
+      }
+
+      .colorpicker_color {
+        cursor: crosshair;
+      }
+
+      .colorpicker_rgb_r, .colorpicker_rgb_g, .colorpicker_rgb_b,
+      .colorpicker_hsb_h, .colorpicker_hsb_s, .colorpicker_hsb_b, .colorpicker_hex {
+        display: none;
+      }
+
+      .control-group {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body ng-controller="OptionsCtrl">
+    <div class="container">
+      <h1>Configure <small>Awesome Meta-Tiles</small></h1>
+      <hr class="soften" />
+
+      <div class="row">
+        <div class="span3">
+          <iframe name="tile" id="tile" ng-src="meta-tile.html#{{iframe_hash}}" scrolling="no" frameborder="0" align="center" height="200px" width="200px"></iframe>
+          <div class="guid" style="display:none;"></div>
+          <img id="base64img" style="display:none;" />
+          <img id="2ndbase64img" style="display:none;" />
+        </div>
+        <div class="span9">
+          <p>Are you ready to customize your meta-tile widget?</p>
+          <p>
+            Don't forget that <i>each <b>widget</b></i> is configured <i>seperately</i>.
+            You need to click the Cog Icon in each widget to get to the correct settings page.
+          </p>
+          <p><b>To get started, please choose a meta-tile from the left.</b></p>
+          <hr class="soften" />
+        </div>
+        <div class="span9">
+          <p>Would you like to make the widget have a different grid size?</p>
+          <p>Just choose a size here. Note that if you choose a smaller grid, the extra icons will be <b>removed</b>.
+          <form class="form-horizontal">
+            <div class="control-group" style="display:block;">
+              <label class="control-label" for="preset"><b>Set meta-tile size</b></label>
+              <div class="controls">
+                <select id="sizes" name="sizes" class="span2">
+                  <option value="">Don't Change</option>
+                  <option value="9">1/9 tiles</option>
+                  <option value="4">1/4 tiles</option>
+                  <option value="2">1/2 Horizontal tiles</option>
+                  <option value="2v">1/2 Vertical tiles</option>
+                </select>
+                <button class="setsize btn">Set</button>
+              </div>
+            </div>
+            <input id="disable_search" type="checkbox"> <b>Disable search in this widget?</b> Alternatively, just remove the Search URLs.
+            <br>
+            <input id="background_transparent_preview" type="checkbox" checked="true"> <b>Use colored background in widget preview?</b> (only to show transparently-backgrounded icons, and will not affect the actual widget)
+          </form>
+        </div>
+      <div class="row">
+        <div class="span12">
+          <form class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label" for="preset">Set Shortcut from Pre-set</label>
+              <div class="controls">
+                <select id="presets" name="presets" class="span3">
+                  <option value="">None</option>
+                  <optgroup label="Installed Chrome Apps" id="chromeapps">
+
+                  </optgroup>
+                  <optgroup label="Useful Preset Websites" id="sites">
+
+                  </optgroup>
+              </select>
+                <button class="set btn">Set</button>
+              </div>
+            </div>
+
+          <form class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label" for="shortcut_name">Sub-Shortcut Name</label>
+              <div class="controls">
+                <input type="text" id="shortcut_name" class="input-xlarge" placeholder="Google">
+                <span class="help-inline">This will show on mouse-over of the corresponding tile.</span>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="url">Sub-Shortcut URL</label>
+              <div class="controls">
+                <input type="text" id="url" class="input-xlarge" placeholder="http://www.google.com/">
+                <span class="help-inline">Where would you like this tile to take you?</span>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="image">Sub-Shortcut Image</label>
+              <div class="controls">
+                <input type="text" id="image" class="input-xlarge" placeholder="reddit.png">
+                <span class="help-inline">Feel free to use a URL of your choosing.</span>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="search">Sub-Shortcut Search URL</label>
+              <div class="controls">
+                <input type="text" id="search" class="input-xlarge" placeholder="">
+                <span class="help-inline">Don't change this unless you know what you're doing. (uses sprintf %s)</span>
+              </div>
+            </div>
+
+            <div class="control-group" id="color">
+              <label class="control-label" for="color">Sub-Tile Color</label>
+              <div class="controls">
+                <div id="colorSelector"><div style="background-color: #0000ff"></div></div>
+                <span class="help-inline">What's a good color for this?</span>
+                <p>
+                <input id="background_transparent" type="checkbox"> Use transparent background?
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn" id="antp">Back to Awesome New Tab Page</button>
+              <button type="submit" class="btn btn-primary" id="as">Apply &amp; Save Changes</button>
+            </div>
+          </form>
+        </div>
+    </body>
+  </div>
+</html>

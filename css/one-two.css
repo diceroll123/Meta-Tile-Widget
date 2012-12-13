@@ -1,0 +1,17 @@
+input {
+  top: -webkit-calc(50% - 13px);
+}
+
+li {
+	position: absolute;
+	list-style-type: none;
+	height: -webkit-calc(100% / 2 - 3px);
+	width: 100%;
+}
+li:nth-child(even) {
+	bottom: 0px;
+}​
+
+li:nth-child(odd) {
+	top: 0px;
+}​

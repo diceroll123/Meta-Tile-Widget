@@ -1,0 +1,14 @@
+input {
+  top: -2px;
+}
+
+li {
+	position: absolute;
+	list-style-type: none;
+	height: 100%;
+  width: -webkit-calc(100% / 2 - 3px);
+}
+
+li:nth-child(even) {
+	right: 0px;
+}​

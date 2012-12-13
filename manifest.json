@@ -1,0 +1,26 @@
+{
+  "update_url": "http://clients2.google.com/service/update2/crx",
+  "minimum_chrome_version": "22",
+  "background": {
+    "scripts": [
+      "/js/jquery.js",
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "version": "1.1",
+  "name": "Meta-Tile Widget [ANTP]",
+  "description": "Awesome Mega-customizable Sub-shortcut widget for Awesome New Tab Page. [ANTP]",
+  "options_page": "options.html",
+  "icons": {
+    "128": "icon.png"
+  },
+  "web_accessible_resources": [
+    "meta-tile.html", "options.html"
+  ],
+  "manifest_version": 2,
+  "permissions": [
+    "management",
+    "storage"
+  ]
+}

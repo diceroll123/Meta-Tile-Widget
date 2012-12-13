@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app ng-csp>
+  <head>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/angular.js"></script>
+    <script type="text/javascript" src="/js/meta-tile.js"></script>
+    <script type="text/javascript" src="/js/jquery.sortable.js"></script>
+    <link rel="stylesheet" type="text/css" />
+    <script type="text/javascript" id="tilejs"></script>
+
+    <style>
+      body {
+        user-select: none;
+        -webkit-user-select: none;
+        cursor: default;
+        padding: 0;
+        margin: 0;
+      }
+
+      .animations {
+        -webkit-transition-property: all;
+        -webkit-transition-duration: 0.5s;
+      }
+
+      html, body {
+        width: 100%;
+        height: 100%;
+      }
+
+      a {
+        cursor: default;
+      }
+
+      ul {
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        position: absolute;
+        list-style-type: none;
+      }
+
+      #meta-tile a {
+        width: 100%;
+        height: 100%;
+        display: block;
+        cursor: pointer;
+      }
+
+      input {
+        position: absolute;
+        z-index: 999;
+        width: 99%;
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body ng-controller="MetaTileCtrl">
+    <input type="text" class="search-box" name="search" value="" placeholder="Search" autocomplete="off"/>
+    <ul id="meta-tile" class="{{grid}}">
+      <li ng-repeat="tile in tiles" class="animations">
+        <a href="{{tile.url}}" class="{{tile.sub_guid}}" target="_top" title="{{tile.name}}" style="background: center no-repeat {{tile.color}} url('{{tile.image}}'); background-size: contain;" data-color="{{tile.color}}" data-image="{{tile.dataimage}}" data-search="{{tile.search}}"></a>
+      </li>
+    </ul>
+  </body>
+
+</html>

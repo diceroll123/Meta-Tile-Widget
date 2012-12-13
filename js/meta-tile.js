@@ -114,6 +114,7 @@ function deadOrAlive() {
       if (event.which === 13 && $(this).val()) {
         var url = $(this).attr("data-search");
         url = url.replace(/%s/g, $(this).val());
+        url = url.replace("{input}", $(this).val());
         $(this).val("");
         window.open(url);
       }

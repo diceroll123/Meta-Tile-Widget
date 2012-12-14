@@ -121,7 +121,7 @@ function deadOrAlive() {
 
         var open_using = data[get_guid()].options.open_using;
 
-        if (open_using !== "normal" && open_using !== "newtab" && open_using !== "pin") {
+        if (open_using !== "normal" && open_using !== "newtab" && open_using !== "pin" && open_using !== "newtab-inactive" && open_using !== "pin-inactive") {
           open_using = "normal";
           data[get_guid()].options.open_using = "normal";
           chrome.storage.sync.set(data);

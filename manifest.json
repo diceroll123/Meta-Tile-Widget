@@ -8,7 +8,7 @@
     ],
     "persistent": false
   },
-  "version": "1.2",
+  "version": "1.2.1",
   "name": "Meta-Tile Widget [ANTP]",
   "description": "Awesome Mega-customizable Sub-shortcut widget for Awesome New Tab Page. [ANTP]",
   "options_page": "options.html",

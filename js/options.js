@@ -154,17 +154,15 @@ $(document).ready(function() {
     });
   });
 
-  $('#open_tab').change(function() {
+  $('#open_using').change(function() {
     var element = $(this);
     chrome.storage.sync.get(get_guid(), function(data) {
       if(data[get_guid()].options === undefined) {
         data[get_guid()].options = {};
       }
-      if (element.is(':checked')) {
-        data[get_guid()].options.open_tab = true;
-      } else {
-        data[get_guid()].options.open_tab = false;
-      }
+
+      data[get_guid()].options.open_using = element.val();
+      console.log(data[get_guid()].options);
       chrome.storage.sync.set(data);
     });
   });
@@ -266,8 +264,8 @@ $(document).ready(function() {
       $("#disable_search").attr("checked", true);
     }
 
-    if (data[get_guid()] && data[get_guid()].options && data[get_guid()].options.open_tab == true) {
-      $("#open_tab").attr("checked", true);
+    if (data[get_guid()] && data[get_guid()].options && data[get_guid()].options.open_using) {
+      $("#open_using").val(data[get_guid()].options.open_using);
     }
   });
 });

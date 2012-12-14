@@ -25,6 +25,7 @@ function MetaTileCtrl($scope) {
       if (data[get_guid()] === undefined) { // where presets are set
         data[get_guid()] = {};
         data[get_guid()].options = {};
+        data[get_guid()].options.open_using = "normal";
         data[get_guid()].tiles = presets;
         chrome.storage.sync.set(data);
       }
@@ -65,13 +66,6 @@ function MetaTileCtrl($scope) {
       $("link").attr("href", "/css/" + $scope.grid + ".css");
       if(data[get_guid()].options && data[get_guid()].options.disable_search != true) {
         $("#tilejs").attr("src", "/js/css/" + $scope.grid + ".js");
-      }
-
-      $scope.open_in = "_top"; // by default
-
-      console.log(data[get_guid()].options.open_tab);
-      if(data[get_guid()].options && data[get_guid()].options.open_tab == true) {
-        $scope.open_in = "_blank";
       }
 
       $scope.$apply();
@@ -118,6 +112,23 @@ function deadOrAlive() {
         $(this).val("");
         window.open(url);
       }
+    });
+
+    $(document).on("click", "a", function(e) { // new onclick method
+      e.preventDefault();
+      var url = $(this).attr("href");
+      chrome.storage.sync.get(get_guid(), function(data) {
+
+        var open_using = data[get_guid()].options.open_using;
+
+        if (open_using !== "normal" && open_using !== "newtab" && open_using !== "pin") {
+          open_using = "normal";
+          data[get_guid()].options.open_using = "normal";
+          chrome.storage.sync.set(data);
+        }
+
+        chrome.extension.sendMessage({url: url, open_using: open_using});
+      });
     });
   }
 }

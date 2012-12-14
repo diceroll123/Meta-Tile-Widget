@@ -92,8 +92,16 @@
                 <button class="setsize btn">Set</button>
               </div>
             </div>
-            <input id="open_tab" type="checkbox"> <b>Open clicked tiles in new tab?</b>
-            <br>
+            <div class="control-group" style="display:block;">
+              <label class="control-label" for="open_using"><b>Open links using:</b></label>
+              <div class="controls">
+                <select id="open_using" name="open_using" class="span2">
+                  <option value="normal">Default</option>
+                  <option value="newtab">New Tab</option>
+                  <option value="pin">Pin</option>
+                </select>
+              </div>
+            </div>
             <input id="disable_search" type="checkbox"> <b>Disable search in this widget?</b> Alternatively, just remove the Search URLs.
             <br>
             <input id="background_transparent_preview" type="checkbox" checked="true"> <b>Use colored background in widget preview?</b> (only to show transparently-backgrounded icons, and will not affect the actual widget)
@@ -103,7 +111,7 @@
         <div class="span12">
           <form class="form-horizontal">
             <div class="control-group">
-              <label class="control-label" for="preset">Set Shortcut from Pre-set</label>
+              <label class="control-label" for="presets">Set Shortcut from Pre-set</label>
               <div class="controls">
                 <select id="presets" name="presets" class="span3">
                   <option value="">None</option>

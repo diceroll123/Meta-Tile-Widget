@@ -90,6 +90,19 @@ $(document).ready(function() {
       $('#colorSelector').css('backgroundColor', '#' + hex);
       new_instance = set_instance($(".guid").html(), "color", "#" + hex);
       $("#background_transparent").attr("checked", false);
+    },
+    onBeforeShow: function () {
+      // RGB to HEX
+      var rgbString = $('#colorSelector').css('backgroundColor');
+      var parts = rgbString.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+
+      delete (parts[0]);
+      for (var i = 1; i <= 3; ++i) {
+          parts[i] = parseInt(parts[i]).toString(16);
+          if (parts[i].length == 1) parts[i] = '0' + parts[i];
+      }
+      var hexString ='#'+parts.join('').toUpperCase();
+      $(this).ColorPickerSetColor(hexString);
     }
   });
 

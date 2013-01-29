@@ -53,20 +53,6 @@ function getIcons() {
   });
 }
 
-function convert() { // convert localstorage (anything before DEC 3rd, 2012) to Chrome Sync :] (for exported ANTP)
-  for (var key in localStorage) {
-    if (key.length == 36) { // a proper GUID
-      console.log(localStorage[key]);
-      var store = {};
-      store[key] = JSON.parse(localStorage[key]);
-      chrome.storage.sync.set(store);
-    }
-  }
-  localStorage.clear();
-}
-
-convert();
-
 getIcons();
 
 chrome.management.onInstalled.addListener(getIcons);
